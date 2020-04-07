@@ -1,4 +1,4 @@
-import 'package:bugh_e_zahra/models/video_model.dart';
+import 'package:bagh_e_zahra/models/video_model.dart';
 
 class Channel {
 

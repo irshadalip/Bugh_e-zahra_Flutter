@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:bugh_e_zahra/home.dart';
+import 'package:bagh_e_zahra/home.dart';
+
+import 'initPage.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -14,7 +17,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(debugShowCheckedModeBanner: false,
-      home: Builder(builder: (context) => Home()),
+      home: Builder(builder: (context) => InitPage()),
     );
   }
 }

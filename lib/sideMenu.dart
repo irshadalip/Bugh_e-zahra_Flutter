@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:bugh_e_zahra/sedeMenu/settings.dart';
-import 'package:bugh_e_zahra/sedeMenu/myProfile.dart';
-import 'package:bugh_e_zahra/sedeMenu/aboutUs.dart';
+import 'package:bagh_e_zahra/sedeMenu/settings.dart';
+import 'package:bagh_e_zahra/sedeMenu/myProfile.dart';
+import 'package:bagh_e_zahra/sedeMenu/aboutUs.dart';
 
 class SideMenu extends StatefulWidget {
   @override

@@ -35,16 +35,15 @@ class _MyProfileState extends State<MyProfile> {
         ),
         child: Center(
             child: Container(
+          height: 150,
+          width: 150,
           decoration: BoxDecoration(
               border: Border.all(width: 5, color: Colors.green[50]),
-              borderRadius: BorderRadius.circular(1000.0)),
-          child: ClipRRect(
-              borderRadius: BorderRadius.circular(1000.0),
-              child: Image.network(
-                  'https://flutter-examples.com/wp-content/uploads/2019/09/sample_image.jpg',
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  height: MediaQuery.of(context).size.width * 0.5,
-                  fit: BoxFit.cover)),
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                      'https://flutter-examples.com/wp-content/uploads/2019/09/sample_image.jpg'))),
         )),
       ),
     );

@@ -1,10 +1,11 @@
-import 'package:bugh_e_zahra/video_screen.dart';
+import 'package:bagh_e_zahra/video_screen.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'cards/homeVideoCard.dart';
 
-import 'package:bugh_e_zahra/models/channel_model.dart';
-import 'package:bugh_e_zahra/models/video_model.dart';
-import 'package:bugh_e_zahra/services/api_service.dart';
+import 'package:bagh_e_zahra/models/channel_model.dart';
+import 'package:bagh_e_zahra/models/video_model.dart';
+import 'package:bagh_e_zahra/services/api_service.dart';
+import 'package:flutter_offline/flutter_offline.dart';
 
 class Page3 extends StatefulWidget {
   @override
@@ -12,20 +13,78 @@ class Page3 extends StatefulWidget {
 }
 
 class _Page3State extends State<Page3> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
+  Widget build(BuildContext context) {
+    return OfflineBuilder(
+      connectivityBuilder: (BuildContext context,
+          ConnectivityResult connectivity, Widget child) {
+        final bool connected = connectivity != ConnectivityResult.none;
+        return Container(
+          child: connected ? ConnectedInternet() : OffLine(),
+        );
+      },
+      child: Center(
+        child: Text("ONLINE Or OFFLINE"),
+      ),
+    );
+  }
+}
+
+class OffLine extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.red,
+      height: 35,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            "OFFLINE",
+            style: TextStyle(color: Colors.white),
+          ),
+          SizedBox(
+            width: 8.0,
+          ),
+          SizedBox(
+            width: 12.0,
+            height: 12.0,
+            child: CircularProgressIndicator(
+              strokeWidth: 2.0,
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ConnectedInternet extends StatefulWidget {
+  @override
+  _ConnectedInternetState createState() => _ConnectedInternetState();
+}
+
+class _ConnectedInternetState extends State<ConnectedInternet> {
   Channel _channel;
   bool _isLoading = false;
+
   @override
   void initState() {
     super.initState();
 
     _initChannel();
+    _checkInternetConnectivity();
   }
 
   _initChannel() async {
     Channel channel = await APIService.instance
         .fetchChannel(channelId: 'UCKGIhhmREOM731Fba8pKvRg');
-        //'UC6Dy0rQ6zDnQuHQ1EeErGUA'
+    //'UC6Dy0rQ6zDnQuHQ1EeErGUA'
     setState(() {
       _channel = channel;
     });
@@ -144,6 +203,31 @@ class _Page3State extends State<Page3> {
     _isLoading = false;
   }
 
+  _showDialog(title, text) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+              title: Text(title),
+              content: Text(text),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text("ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ]);
+        });
+  }
+
+  _checkInternetConnectivity() async {
+    var result = await Connectivity().checkConnectivity();
+    if (result == ConnectivityResult.none) {
+      _showDialog('No Internet', "You are not connected to network");
+    }
+  }
+
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,
@@ -180,24 +264,13 @@ class _Page3State extends State<Page3> {
             )
           : Center(
               child: CircularProgressIndicator(
+                strokeWidth: 2,
                 backgroundColor: Colors.green[200],
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  Colors.green[600]//Theme.of(context).primaryColor, // Red
-                ),
+                    Colors.green[600] //Theme.of(context).primaryColor, // Red
+                    ),
               ),
             ),
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-

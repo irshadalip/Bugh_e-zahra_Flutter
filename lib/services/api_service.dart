@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:bugh_e_zahra/models/channel_model.dart';
-import 'package:bugh_e_zahra/models/video_model.dart';
-import 'package:bugh_e_zahra/utilities/keys.dart';
+import 'package:bagh_e_zahra/models/channel_model.dart';
+import 'package:bagh_e_zahra/models/video_model.dart';
+import 'package:bagh_e_zahra/utilities/keys.dart';
 
 class APIService {
   APIService._instantiate();

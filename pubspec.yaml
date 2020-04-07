@@ -1,4 +1,4 @@
-name: bugh_e_zahra
+name: bagh_e_zahra
 description: A new Flutter project.
 
 # The following defines the version and build number for your application.
@@ -26,6 +26,8 @@ dependencies:
   curved_navigation_bar: ^0.3.2
   http: ^0.12.0+2
   youtube_player_flutter: 6.1.0+4
+  connectivity: ^0.4.8+2
+  flutter_offline: "^0.3.0"
 
 dev_dependencies:
   flutter_test:
