@@ -3,7 +3,8 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:bagh_e_zahra/sideMenu.dart';
 import 'package:bagh_e_zahra/tabScreens/homeTab.dart';
-import 'tabScreens/page1.dart';
+import 'tabScreens/homeTabPages.dart';
+import 'tabScreens/chatTab.dart';
 
 
 class Home extends StatefulWidget {
